@@ -1,0 +1,109 @@
+//between ball and sprite
+ function collisionWithTarget(body1,sprite)
+{
+    console.log("collision called");
+    var d = dist(body1.position.x,body1.position.y,sprite.position.x,sprite2.position.y);
+    console.log(d);
+    if(d<=110)
+      {       
+              console.log("a= ")
+              console.log(d);
+              World.remove(engine.world,body1);
+              body1 = null;
+              return true; 
+     }
+     else
+     {
+       return false;
+     }
+            
+}
+
+
+// between ball and target
+function collisionWithTarget(ball,targettopleft)
+{ 
+  var collision; 
+      collision=Matter.SAT.collides(ball.body, targettopleft.body);
+
+      console.log(ball.body.position.x,ball.body.position.y)
+      console.log(targettopleft.body.position.x,targettopleft.body.position.y)
+      if(collision.collided)
+      {
+        console.log("target collided");
+        Matter.Body.setStatic(ball.body, true);
+        World.remove(world,ball.body);
+      }
+      else
+      {
+             return false;
+      }
+    }
+}
+                  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ //to chk ball collision with diver direction
+ function collisionWithKeeper(keyCode) 
+ {
+  var collision; 
+  if((keyCode==65)&&(diveSelection==1))
+  { 
+      collision=Matter.SAT.collides(ball.body,keeper.body);
+      if (collision.collided) 
+      {
+        console.log("ball collided with keeper");
+        World.remove(world,ball.body);
+        Matter.Body.setStatic(ball.body, true);
+        Matter.Body.setStatic(keeper.body, true);
+     }
+
+  }
+  else
+  if((keyCode==83)&&(diveSelection==2))
+  { 
+      collision=Matter.SAT.collides(ball.body,keeper.body);
+      if (collision.collided) 
+      {
+        console.log("right collided");
+        World.remove(world,ball.body);
+     }
+  }
+  else
+  if((keyCode==90)&&(diveSelection==3))
+  { 
+      collision=Matter.SAT.collides(ball.body,keeper.body);
+      if (collision.collided) 
+      {
+        console.log("bottom left collided");
+        World.remove(world,ball.body);
+     }
+  }
+  else
+  if((keyCode==88)&&(diveSelection==4))
+  { 
+      collision=Matter.SAT.collides(ball.body,keeper.body);
+      if (collision.collided) 
+      {
+        console.log("bottom right collided");
+        World.remove(world,ball.body);
+     }
+  }
+}
+
